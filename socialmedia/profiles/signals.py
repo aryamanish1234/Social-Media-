@@ -12,9 +12,9 @@ def post_save_create_profile(sender, instance , created , **kwargs):
 
 
 @receiver(post_save, sender=Relationship)
-def post_save_add_to_friends(sender, intance, created, **kwargs):
+def post_save_add_to_friends(sender, instance, created, **kwargs):
     sender_ = instance.sender
-    receiver_instance.receiver
+    receiver_ = instance.receiver
     if instance.status == 'accepted':
         sender_.friends.add(receiver_.user)
         receiver_.friends.add(sender_.user)

@@ -19,11 +19,12 @@
   {% include 'social/navbar.html' %}
     <div class="ui container">
       {% block content %}
+      
       {% endblock content %}
     </div>
 
-    {% block scripts %}
-    {% endblock scripts %}
+{% block scripts %}
+{% endblock scripts %}
    
    <script type='text/javascript' src={% static '/main.js' %}></script>
 

@@ -1,0 +1,41 @@
+{% extends 'social/base.html' %}
+
+{% block title %}
+posts
+{% endblock title %}
+
+{% block content %}
+<div class="ui grid">
+   <div class="row">
+     <div class="eleven wide column">
+        {% for obj in qs %}
+          <div class="ui fluid card">
+             <div class="content">
+               {{obj.content}}
+            </div>
+            <div class="content">
+               <form action="{% url 'posts:like-post-view' %}" method="POST">
+                   {% csrf_token %}
+                   <input type="hidden" name="post_id" vlaue="{{obj.id}}">
+                   <button  type="submit" class="ui red button">
+                       {% if profile not in obj.liked.all %}
+                         <i class="heart icon"></i>&nbsp;like
+                       {% else %}
+                          <i class="heart icon"></i>&nbsp;Unlike
+                       {% endif %}
+                   </button>
+                    <a class="ui basic red left pointing label">
+                      {{obj.num_likes}}
+                    </a>
+               </form>
+            </div>
+      </div>
+      {% endfor %}
+      </div>
+      <div class="five wide column">
+      From 
+      {{profile}}
+      </div>
+   </row>
+</div>
+{% endblock content %}
